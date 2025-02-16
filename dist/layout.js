@@ -7,18 +7,25 @@ class PortfolioLayout {
     }
 
     async initialize() {
+        console.log('Initializing layout...'); // Debug log
         await this.loadImageDimensions();
         this.render();
         window.addEventListener('resize', () => this.render());
     }
 
     async loadImageDimensions() {
+        console.log('Loading image dimensions...'); // Debug log
         const promises = this.photos.map(photo => {
             return new Promise((resolve) => {
                 const img = new Image();
                 img.onload = () => {
                     photo.width = img.width;
                     photo.height = img.height;
+                    console.log(`Loaded image: ${photo.src} (${photo.width}x${photo.height})`); // Debug log
+                    resolve();
+                };
+                img.onerror = () => {
+                    console.error(`Failed to load image: ${photo.src}`); // Debug log
                     resolve();
                 };
                 img.src = photo.src;
@@ -28,13 +35,21 @@ class PortfolioLayout {
     }
 
     calculateLayout() {
+        const containerWidth = this.container.clientWidth - (this.containerPadding * 2);
+        console.log('Container width:', containerWidth); // Debug log
+        
+        // Ensure we have a minimum width
+        if (containerWidth <= 0) {
+            console.warn('Container width is 0 or negative');
+            return [];
+        }
+
         const rows = [];
         let currentRow = [];
         let rowWidth = 0;
-        const containerWidth = this.container.clientWidth - (this.containerPadding * 2);
 
         this.photos.forEach(photo => {
-            const aspectRatio = photo.width / photo.height;
+            const aspectRatio = photo.width / photo.height || 1.5; // Fallback ratio if dimensions failed to load
             const scaledWidth = this.maxRowHeight * aspectRatio;
             
             if (rowWidth + scaledWidth > containerWidth && currentRow.length > 0) {
@@ -76,7 +91,7 @@ class PortfolioLayout {
                             <img 
                                 src="${photo.src}"
                                 alt="${photo.alt}"
-                                class="block h-full w-full object-cover object-center opacity-0 animate-fade-in transition duration-500 transform scale-100 hover:scale-110"
+                                class="block h-full w-full object-cover object-center opacity-100"
                             />
                         </a>
                     </div>
