@@ -7,25 +7,25 @@ class PortfolioLayout {
     }
 
     async initialize() {
-        console.log('Initializing layout...'); // Debug log
+        console.log('Initializing layout...');
         await this.loadImageDimensions();
         this.render();
         window.addEventListener('resize', () => this.render());
     }
 
     async loadImageDimensions() {
-        console.log('Loading image dimensions...'); // Debug log
+        console.log('Loading image dimensions...');
         const promises = this.photos.map(photo => {
             return new Promise((resolve) => {
                 const img = new Image();
                 img.onload = () => {
                     photo.width = img.width;
                     photo.height = img.height;
-                    console.log(`Loaded image: ${photo.src} (${photo.width}x${photo.height})`); // Debug log
+                    console.log(`Loaded image: ${photo.src} (${photo.width}x${photo.height})`);
                     resolve();
                 };
                 img.onerror = () => {
-                    console.error(`Failed to load image: ${photo.src}`); // Debug log
+                    console.error(`Failed to load image: ${photo.src}`);
                     resolve();
                 };
                 img.src = photo.src;
@@ -36,9 +36,8 @@ class PortfolioLayout {
 
     calculateLayout() {
         const containerWidth = this.container.clientWidth - (this.containerPadding * 2);
-        console.log('Container width:', containerWidth); // Debug log
+        console.log('Container width:', containerWidth);
         
-        // Ensure we have a minimum width
         if (containerWidth <= 0) {
             console.warn('Container width is 0 or negative');
             return [];
@@ -49,7 +48,7 @@ class PortfolioLayout {
         let rowWidth = 0;
 
         this.photos.forEach(photo => {
-            const aspectRatio = photo.width / photo.height || 1.5; // Fallback ratio if dimensions failed to load
+            const aspectRatio = photo.width / photo.height || 1.5;
             const scaledWidth = this.maxRowHeight * aspectRatio;
             
             if (rowWidth + scaledWidth > containerWidth && currentRow.length > 0) {
