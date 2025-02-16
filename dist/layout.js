@@ -7,18 +7,25 @@ class PortfolioLayout {
     }
 
     async initialize() {
+        console.log('Initializing layout...');
         await this.loadImageDimensions();
         this.render();
         window.addEventListener('resize', () => this.render());
     }
 
     async loadImageDimensions() {
+        console.log('Loading image dimensions...');
         const promises = this.photos.map(photo => {
             return new Promise((resolve) => {
                 const img = new Image();
                 img.onload = () => {
                     photo.width = img.width;
                     photo.height = img.height;
+                    console.log(`Loaded image: ${photo.src} (${photo.width}x${photo.height})`);
+                    resolve();
+                };
+                img.onerror = () => {
+                    console.error(`Failed to load image: ${photo.src}`);
                     resolve();
                 };
                 img.src = photo.src;
@@ -28,13 +35,20 @@ class PortfolioLayout {
     }
 
     calculateLayout() {
+        const containerWidth = this.container.clientWidth - (this.containerPadding * 2);
+        console.log('Container width:', containerWidth);
+        
+        if (containerWidth <= 0) {
+            console.warn('Container width is 0 or negative');
+            return [];
+        }
+
         const rows = [];
         let currentRow = [];
         let rowWidth = 0;
-        const containerWidth = this.container.clientWidth - (this.containerPadding * 2);
 
         this.photos.forEach(photo => {
-            const aspectRatio = photo.width / photo.height;
+            const aspectRatio = photo.width / photo.height || 1.5;
             const scaledWidth = this.maxRowHeight * aspectRatio;
             
             if (rowWidth + scaledWidth > containerWidth && currentRow.length > 0) {
@@ -76,7 +90,7 @@ class PortfolioLayout {
                             <img 
                                 src="${photo.src}"
                                 alt="${photo.alt}"
-                                class="block h-full w-full object-cover object-center opacity-0 animate-fade-in transition duration-500 transform scale-100 hover:scale-110"
+                                class="block h-full w-full object-cover object-center opacity-100"
                             />
                         </a>
                     </div>
