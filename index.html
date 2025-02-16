@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" style="background: #D3A588">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Luna's website :)">
+    <meta name="keywords" content="Luna, Mustfa, Luna Mustfa, blog, portfolio, portfolio website, website, landing page">
+    <meta name="author" content="Luna Mustfa">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📸</text></svg>">
+    
+    <title>Luna | Portfolio</title>
+    
+    <link rel="stylesheet" href="dist/styles.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700%7cPT+Serif:400i,500i,700i" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=IBM+Plex+Mono' rel="stylesheet">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+    
+<body class="md:px-20 opacity-0 animate-fade-in transition duration-500">
+    <div class="container mx-auto">
+        <header>Luna Mustfa | Portfolio</header>
+        <section class="text-neutral-700">
+            <div id="portfolio-container" class="container w-full p-4">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="max-w-screen-xl py-16 mx-auto">
+            <div class="grid grid-cols-1 gap-8 text-center mx-auto">
+                <div>
+                    <p>Contact me 💖 <a href="mailto:lunamustfa@gmail.com">lunamustfa@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        Fancybox.bind("[data-fancybox]", {});
+    </script>
+    <script src="dist/fade_in.js"></script>
+    <script src="dist/photos.js"></script>
+    <script src="dist/layout.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            const container = document.getElementById('portfolio-container');
+            const layout = new PortfolioLayout(container, photoData);
+            await layout.initialize();
+            
+            const body = document.querySelector("body");
+            body.classList.remove("opacity-0");
+            body.classList.add("opacity-100");
+        });
+    </script>
+</body>
+</html>
