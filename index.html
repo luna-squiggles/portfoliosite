@@ -35,7 +35,6 @@
         <header>Luna Mustfa | Portfolio</header>
         <section class="text-neutral-700">
             <div id="portfolio-container" class="container w-full p-4">
-                <!-- Dynamic content will be inserted here -->
             </div>
         </section>
     </div>
@@ -56,16 +55,23 @@
     <script src="dist/fade_in.js"></script>
     <script src="dist/photos.js"></script>
     <script src="dist/layout.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", async function() {
-            const container = document.getElementById('portfolio-container');
-            const layout = new PortfolioLayout(container, photoData);
+<script>
+    document.addEventListener("DOMContentLoaded", async function() {
+        const container = document.getElementById('portfolio-container');
+        console.log('Container found:', container);
+        
+        const layout = new PortfolioLayout(container, photoData);
+        try {
             await layout.initialize();
-            
-            const body = document.querySelector("body");
-            body.classList.remove("opacity-0");
-            body.classList.add("opacity-100");
-        });
-    </script>
+            console.log('Layout initialized successfully');
+        } catch (error) {
+            console.error('Layout initialization failed:', error);
+        }
+        
+        const body = document.querySelector("body");
+        body.classList.remove("opacity-0");
+        body.classList.add("opacity-100");
+    });
+</script>
 </body>
 </html>
