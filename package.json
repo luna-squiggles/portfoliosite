@@ -1,0 +1,11 @@
+{
+  "name": "luna-portfolio",
+  "version": "2.0.0",
+  "description": "Luna Mustfa's Photography Portfolio",
+  "scripts": {
+    "build": "echo 'Build complete'"
+  },
+  "dependencies": {
+    "sharp": "^0.32.0"
+  }
+}
