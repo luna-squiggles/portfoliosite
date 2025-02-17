@@ -32,10 +32,6 @@ const photoData = [
         alt: "a seagull over the deep ocean"
     },
     {
-        src: "/assets/Photo 13 - DSCF0499.png",
-        alt: "swedish archipelago"
-    },
-    {
         src: "/assets/Photo 14 - DSCF1196.png",
         alt: "the sunset over the norwegian coatline"
     },
@@ -43,8 +39,4 @@ const photoData = [
         src: "/assets/Photo 15 - DSCF1129.png",
         alt: "A single wave over an otherwise calm sea"
     },
-    {
-        src: "/assets/Photo 16 - DSCF0951.png",
-        alt: "the view out of my bedroom window"
-    }
 ];
