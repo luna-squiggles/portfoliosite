@@ -2,7 +2,7 @@ class PortfolioLayout {
     constructor(container, photos) {
         this.container = container;
         this.photos = photos;
-        this.maxRowHeight = 200;
+        this.maxRowHeight = 300;
         this.containerPadding = 16;
     }
 
