@@ -28,24 +28,12 @@ const photoData = [
     "alt": "Photo 3   DSCF0928"
   },
   {
-    "src": "/assets/Photo 4 - DSCF0211 - Cover.webp",
-    "alt": "Photo 4   DSCF0211   Cover"
-  },
-  {
     "src": "/assets/Photo 4 - DSCF0211.webp",
     "alt": "Photo 4   DSCF0211"
   },
   {
-    "src": "/assets/Photo 6 - DSCF0923 - Cover.webp",
-    "alt": "Photo 6   DSCF0923   Cover"
-  },
-  {
     "src": "/assets/Photo 6 - DSCF0923.webp",
     "alt": "Photo 6   DSCF0923"
-  },
-  {
-    "src": "/assets/Photo 7 - DSCF1458 - Cover.webp",
-    "alt": "Photo 7   DSCF1458   Cover"
   },
   {
     "src": "/assets/Photo 7 - DSCF1458.webp",
